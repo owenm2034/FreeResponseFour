@@ -29,11 +29,9 @@ public class RouteCipher
     int index = 0;
     for (int rows = 0; rows < letterBlock.length; rows++) {
       for (int col = 0; col < letterBlock[0].length; col++) {
-        if(index < strLength - 1) {
+        if(index < strLength) {
           letterBlock[rows][col] = str.substring(index, index + 1);
-        }
-        else if (index < strLength) {
-          letterBlock[rows][col] = str.substring(index);
+          index++;
         }
         else {letterBlock[rows][col] = "A";}
       }
@@ -65,12 +63,11 @@ public class RouteCipher
   public String encryptMessage(String message)
   { 
     /* to be implemented in part (b) */
-    for (int col = 0; col < letterBlock[0].length; col++) {
-      for (int row = 0; row < letterBlock.length; row++) {
-        
-      }
+    if (!(message.equalsIgnoreCase(""))) {
+      fillBlock(message);
+      return encryptBlock();
     }
-    return "bob";
+    return "";
   }
   
   public static void main(String[] args)
