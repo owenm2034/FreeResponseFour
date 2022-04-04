@@ -63,12 +63,19 @@ public class RouteCipher
   public String encryptMessage(String message)
   { 
     /* to be implemented in part (b) */
-    if (!(message.equalsIgnoreCase(""))) {
-      fillBlock(message);
-      return encryptBlock();
+    String encryptedString = "";
+    int index;
+    for (index = 0; index < message.length(); index += letterBlock.length * letterBlock[0].length) {
+      String tmpString;
+      if (index >= message.length() || message.length() < letterBlock.length * letterBlock[0].length) {
+        tmpString = message.substring(index);
+      }
+      else {tmpString = message.substring(index, index + letterBlock.length * letterBlock[0].length);}
+      fillBlock(tmpString);
+      encryptedString += encryptBlock();
     }
-    return "";
-  }
+    return encryptedString;
+    }
   
   public static void main(String[] args)
   {
